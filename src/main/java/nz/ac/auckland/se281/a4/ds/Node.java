@@ -13,8 +13,7 @@ public class Node<T> {
 	/**
 	 * Constructor for Node
 	 * 
-	 * @param v
-	 *            the value of the node
+	 * @param v the value of the node
 	 */
 	public Node(T v) {
 		value = v;
@@ -24,8 +23,7 @@ public class Node<T> {
 	/**
 	 * Setter for next node
 	 * 
-	 * @param n
-	 *            the next node
+	 * @param n the next node
 	 */
 	public void setNext(Node<T> n) {
 		next = n;

@@ -12,9 +12,12 @@ import java.util.EmptyStackException;
 public class NodesStackAndQueue<T> {
 
 	private Node<T> head; // You should use this variable in your methods
+	private Node<T> tail;
 
 	public NodesStackAndQueue() {
-		head = null;
+		head = null; // initially empty
+		tail = head; // initially the head is the tail
+
 	}
 
 	/**
@@ -23,7 +26,6 @@ public class NodesStackAndQueue<T> {
 	 * @return true if the stack / queue is empty
 	 */
 	public boolean isEmpty() {
-
 		return head == null;
 	}
 
@@ -34,7 +36,8 @@ public class NodesStackAndQueue<T> {
 	 * @param element the element to be "pushed"
 	 */
 	public void push(T element) {
-		Node n = new Node(element);
+		Node<T> n = new Node<T>(element);
+
 		throw new java.lang.UnsupportedOperationException("Not supported yet.");
 
 	}
@@ -69,6 +72,17 @@ public class NodesStackAndQueue<T> {
 	 */
 	public void append(T element) {
 		Node n = new Node(element);
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+
+		// checking if this is the first element to be added
+		if (this.isEmpty()) {
+			head = n;
+
+		} else {
+			// adding the element to the next of tail
+			tail.setNext(n);
+
+			// setting a new tail
+			tail = n;
+		}
 	}
 }
