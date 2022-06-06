@@ -38,8 +38,16 @@ public class NodesStackAndQueue<T> {
 	public void push(T element) {
 		Node<T> n = new Node<T>(element);
 
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		// checking if this is the first element
+		boolean isFirst = this.checkFirstElement(n);
 
+		if (!isFirst) {
+			// connecting the element to the current head
+			n.setNext(head);
+
+			// setting the element to be current head
+			head = n;
+		}
 	}
 
 	/**
@@ -71,18 +79,39 @@ public class NodesStackAndQueue<T> {
 	 * @param element the element to be appended
 	 */
 	public void append(T element) {
-		Node n = new Node(element);
+		Node<T> n = new Node<T>(element);
 
-		// checking if this is the first element to be added
-		if (this.isEmpty()) {
-			head = n;
+		// checking if element is first
+		boolean isFirst = this.checkFirstElement(n);
 
-		} else {
+		if (!isFirst) {
+
 			// adding the element to the next of tail
 			tail.setNext(n);
 
 			// setting a new tail
 			tail = n;
 		}
+	}
+
+	/**
+	 * This method checks if the node is the first element, and sets it as the
+	 * current head and tail if true.
+	 * 
+	 * @param n the node passed in
+	 * @return true if it's the first element, otherwise it returns false
+	 */
+	private boolean checkFirstElement(Node<T> n) {
+		// checking if this is the first element
+		if (this.isEmpty()) {
+			// setting both head and tail to be the passed in element
+			head = n;
+			tail = n;
+			return true;
+
+		} else {
+			return false;
+		}
+
 	}
 }
