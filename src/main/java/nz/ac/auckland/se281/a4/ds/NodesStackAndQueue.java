@@ -55,11 +55,25 @@ public class NodesStackAndQueue<T> {
 	 * element) TODO: Complete this method (Note: You may have to change the return
 	 * type)
 	 * 
-	 * @return object of the top element
+	 * @return the value of the top element
 	 * @throws EmptyStackException if the stack is empty
 	 */
-	public Node pop() throws EmptyStackException {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+	public T pop() throws EmptyStackException {
+
+		// ensuring we don't pop from an empty stack
+		if (this.isEmpty()) {
+			throw new EmptyStackException();
+
+		} else {
+			// saving the current head node before removing
+			Node<T> currentHead = head;
+
+			// replacing current head with the next
+			head = currentHead.getNext();
+
+			// returning the value
+			return currentHead.getValue();
+		}
 	}
 
 	/**
