@@ -23,15 +23,15 @@ public class NodesStackAndQueue<T> {
 	 * @return true if the stack / queue is empty
 	 */
 	public boolean isEmpty() {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+
+		return head == null;
 	}
 
 	/**
-	 * Push operation refers to inserting an element in the Top of the stack.
-	 * TODO: Complete this method
+	 * Push operation refers to inserting an element in the Top of the stack. TODO:
+	 * Complete this method
 	 * 
-	 * @param element
-	 *            the element to be "pushed"
+	 * @param element the element to be "pushed"
 	 */
 	public void push(T element) {
 		Node n = new Node(element);
@@ -41,35 +41,31 @@ public class NodesStackAndQueue<T> {
 
 	/**
 	 * pop an element from the top of the stack (removes and returns the tope
-	 * element)
-	 * TODO: Complete this method (Note: You may have to change the return type)
+	 * element) TODO: Complete this method (Note: You may have to change the return
+	 * type)
 	 * 
 	 * @return object of the top element
-	 * @throws EmptyStackException
-	 *             if the stack is empty
+	 * @throws EmptyStackException if the stack is empty
 	 */
 	public Node pop() throws EmptyStackException {
 		throw new java.lang.UnsupportedOperationException("Not supported yet.");
 	}
 
 	/**
-	 * get the element from the top of the stack without removing it
-	 * TODO: Complete this method (Note: You may have to change the return type)
+	 * get the element from the top of the stack without removing it TODO: Complete
+	 * this method (Note: You may have to change the return type)
 	 *
 	 * @return the value of the top element
-	 * @throws EmptyStackException
-	 *             if the stack is empty
+	 * @throws EmptyStackException if the stack is empty
 	 */
 	public Node peek() throws EmptyStackException {
 		throw new java.lang.UnsupportedOperationException("Not supported yet.");
 	}
 
 	/**
-	 * append an element at the end of the queue
-	 * TODO: Complete this method
+	 * append an element at the end of the queue TODO: Complete this method
 	 *
-	 * @param element
-	 *            the element to be appended
+	 * @param element the element to be appended
 	 */
 	public void append(T element) {
 		Node n = new Node(element);
