@@ -83,8 +83,15 @@ public class NodesStackAndQueue<T> {
 	 * @return the value of the top element
 	 * @throws EmptyStackException if the stack is empty
 	 */
-	public Node peek() throws EmptyStackException {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+	public T peek() throws EmptyStackException {
+		// ensuring we don't peek from empty stack
+		if (this.isEmpty()) {
+			throw new EmptyStackException();
+
+		} else {
+			// returning the value of the current head
+			return head.getValue();
+		}
 	}
 
 	/**
