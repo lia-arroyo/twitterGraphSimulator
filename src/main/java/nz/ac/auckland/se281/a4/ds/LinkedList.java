@@ -136,7 +136,26 @@ public class LinkedList<T> {
 	 * @return the size of the list
 	 */
 	public int size() {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+
+		// count variable for size
+		int count = 0;
+
+		// current node
+		Node<T> currentNode = head;
+
+		// iterating through linkedlist until we hit a null
+		while (currentNode != null) {
+
+			// increment counter
+			count++;
+
+			// setting current node to be the next node
+			currentNode = currentNode.getNext();
+
+		}
+
+		// returning the size of list
+		return count;
 	}
 
 	/**
