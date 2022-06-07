@@ -197,16 +197,17 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a boolean based on whether the input sets are
-	 * anti-symmetric TODO: Complete this method (Note a set is not passed in as a
-	 * parameter but a list)
+	 * This method returns a boolean based on whether the input sets are of
+	 * equivalence relation. TODO: Complete this method (Note a set is not passed in
+	 * as a parameter but a list)
 	 * 
 	 * @param set      A list of TwitterHandles
 	 * @param relation A relation between the TwitterHandles
-	 * @return true if the set and relation are anti-symmetric
+	 * @return true if the relation is an equivalence relation
 	 */
 	public boolean isEquivalence(List<String> set, List<String> relation) {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		// equivalence when the relation is reflexive, symmetric, and transitive
+		return (isReflexive(set, relation) && isSymmetric(relation) && isTransitive(relation));
 	}
 
 	/**
