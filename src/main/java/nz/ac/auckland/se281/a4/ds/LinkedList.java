@@ -1,6 +1,5 @@
 package nz.ac.auckland.se281.a4.ds;
 
-import java.util.NoSuchElementException;
 //*******************************
 //YOU SHOUD MODIFY THE SPECIFIED 
 //METHODS  OF THIS CLASS
@@ -38,10 +37,8 @@ public class LinkedList<T> {
 	 * @return Node: the reference to the Node at position pos
 	 * @throws InvalidPositionException if position is less than 0 or greater than
 	 *                                  size-1
-	 * @throws NoSuchElementException   if the element does not exist in the
-	 *                                  LinkedList
 	 */
-	private Node<T> locateNode(int pos) throws InvalidPositionException, NoSuchElementException {
+	private Node<T> locateNode(int pos) throws InvalidPositionException {
 
 		// ensuring position is within range of linked list size
 		if (pos < 0 || pos > this.size() - 1) {
@@ -58,13 +55,7 @@ public class LinkedList<T> {
 				currentNode = currentNode.getNext();
 			}
 
-			// ensuring the element exists before returning
-			if (currentNode == null) {
-				throw new NoSuchElementException();
-
-			} else {
-				return currentNode;
-			}
+			return currentNode;
 		}
 	}
 
@@ -153,11 +144,42 @@ public class LinkedList<T> {
 	 * @param pos     an integer, which is the position
 	 * @param element the element to insert
 	 * @throws InvalidPositionException if position is less than 0 or greater than
-	 *                                  size-1
+	 *                                  size
 	 */
 	public void insert(int pos, T element) throws InvalidPositionException {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
 
+		// creating new node with the element's value
+		Node<T> newNode = new Node<T>(element);
+
+		// ensuring position is valid
+		if (pos < 0 || pos > this.size()) {
+			throw new InvalidPositionException();
+
+		} else {
+
+			// checking if insertion is at head
+			if (pos == 0) {
+				this.prepend(element);
+
+			} else if (pos == this.size()) {
+				// if inserting at tail
+				this.append(element);
+
+			} else { // if inserting in between
+
+				// locating the node before the desired position
+				Node<T> prevNode = this.locateNode(pos - 1);
+
+				// saving the next node
+				Node<T> nextNode = this.locateNode(pos);
+
+				// setting the previous node's next to new node
+				prevNode.setNext(newNode);
+
+				// setting the new node's next to the nextnode
+				newNode.setNext(nextNode);
+			}
+		}
 	}
 
 	/**
