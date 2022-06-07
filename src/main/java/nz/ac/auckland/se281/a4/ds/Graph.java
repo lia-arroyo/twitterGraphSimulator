@@ -72,7 +72,41 @@ public class Graph {
 	 * @return true if the set and relation are reflexive
 	 */
 	public boolean isReflexive(List<String> set, List<String> relation) {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+
+		// iterating through each vertex
+		for (String vertexString : set) {
+
+			// converting vertex string to a node
+			Node<String> vertex = new Node<String>(vertexString);
+
+			// boolean for if the edge (vertex,vertex) exists
+			boolean isSelfEdge = false;
+
+			// iterating through all the edges
+			for (String edgeString : relation) {
+
+				// transforming string to an edge object
+				Edge<Node<String>> edge = turnStringToEdge(edgeString);
+
+				// getting values of source and target nodes
+				Node<String> source = edge.getSource();
+				Node<String> target = edge.getTarget();
+
+				// checking if self edge (vertex,vertex) exists
+				if ((source.equals(vertex)) && (target.equals(vertex))) {
+					isSelfEdge = true;
+					break; // breaks inner for loop
+				}
+			}
+
+			// ensuring the self edge exists for each vertex
+			if (!isSelfEdge) {
+				return false; // returns false if there exists a vertex without a self edge
+			}
+		}
+
+		// returns true if isSelfEdge is true for all vertices
+		return true;
 
 	}
 
