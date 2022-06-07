@@ -41,8 +41,31 @@ public class LinkedList<T> {
 	 * @throws NoSuchElementException   if the element does not exist in the
 	 *                                  LinkedList
 	 */
-	private Node locateNode(int pos) throws InvalidPositionException, NoSuchElementException {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+	private Node<T> locateNode(int pos) throws InvalidPositionException, NoSuchElementException {
+
+		// ensuring position is within range of linked list size
+		if (pos < 0 || pos > this.size() - 1) {
+			throw new InvalidPositionException();
+
+		} else {
+			// starting iteration from head
+			Node<T> currentNode = head;
+
+			// iterating through linked list until we get to position
+			for (int i = 0; i < pos; i++) {
+
+				// setting the currentNode to be the next node
+				currentNode = currentNode.getNext();
+			}
+
+			// ensuring the element exists before returning
+			if (currentNode == null) {
+				throw new NoSuchElementException();
+
+			} else {
+				return currentNode;
+			}
+		}
 	}
 
 	/**
@@ -192,15 +215,15 @@ public class LinkedList<T> {
 	 * This method checks if the node is the first element, and sets it as the
 	 * current head and tail if true.
 	 * 
-	 * @param n the node passed in
+	 * @param node the node passed in
 	 * @return true if it's the first element, otherwise it returns false
 	 */
-	private boolean checkFirstElement(Node<T> n) {
+	private boolean checkFirstElement(Node<T> node) {
 		// checking if this is the first element
 		if (head == null) {
 			// setting both head and tail to be the passed in element
-			head = n;
-			tail = n;
+			head = node;
+			tail = node;
 			return true;
 
 		} else {
