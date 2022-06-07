@@ -36,17 +36,17 @@ public class NodesStackAndQueue<T> {
 	 * @param element the element to be "pushed"
 	 */
 	public void push(T element) {
-		Node<T> n = new Node<T>(element);
+		Node<T> node = new Node<T>(element);
 
 		// checking if this is the first element
-		boolean isFirst = this.checkFirstElement(n);
+		boolean isFirst = this.checkFirstElement(node);
 
 		if (!isFirst) {
 			// connecting the element to the current head
-			n.setNext(head);
+			node.setNext(head);
 
 			// setting the element to be current head
-			head = n;
+			head = node;
 		}
 	}
 
@@ -100,18 +100,18 @@ public class NodesStackAndQueue<T> {
 	 * @param element the element to be appended
 	 */
 	public void append(T element) {
-		Node<T> n = new Node<T>(element);
+		Node<T> node = new Node<T>(element);
 
 		// checking if element is first
-		boolean isFirst = this.checkFirstElement(n);
+		boolean isFirst = this.checkFirstElement(node);
 
 		if (!isFirst) {
 
 			// adding the element to the next of tail
-			tail.setNext(n);
+			tail.setNext(node);
 
 			// setting a new tail
-			tail = n;
+			tail = node;
 		}
 	}
 
@@ -119,15 +119,15 @@ public class NodesStackAndQueue<T> {
 	 * This method checks if the node is the first element, and sets it as the
 	 * current head and tail if true.
 	 * 
-	 * @param n the node passed in
+	 * @param node the node passed in
 	 * @return true if it's the first element, otherwise it returns false
 	 */
-	private boolean checkFirstElement(Node<T> n) {
+	private boolean checkFirstElement(Node<T> node) {
 		// checking if this is the first element
 		if (this.isEmpty()) {
 			// setting both head and tail to be the passed in element
-			head = n;
-			tail = n;
+			head = node;
+			tail = node;
 			return true;
 
 		} else {
