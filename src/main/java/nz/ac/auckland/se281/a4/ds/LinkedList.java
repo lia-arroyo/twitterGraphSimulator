@@ -54,7 +54,8 @@ public class LinkedList<T> {
 	public void prepend(T element) {
 		Node<T> node = new Node<T>(element);
 
-		// checking if this is the first element to be added to list
+		// checking if this is the first element to be added to list, and sets as head
+		// and tail if true
 		boolean isFirst = this.checkFirstElement(node);
 
 		if (!isFirst) {
@@ -77,9 +78,19 @@ public class LinkedList<T> {
 	// Note this method has been refactored using the helper methods
 	// I will do this as a small ACP exercise in class
 	public void append(T element) {
-		Node t = new Node(element);
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+		Node<T> node = new Node<T>(element);
 
+		// checking if this is the first element to be added, and sets head and tail if
+		// true
+		boolean isFirst = this.checkFirstElement(node);
+
+		if (!isFirst) {
+			// connecting node to tail
+			tail.setNext(node);
+
+			// setting as new tail
+			tail = node;
+		}
 	}
 
 	/**
