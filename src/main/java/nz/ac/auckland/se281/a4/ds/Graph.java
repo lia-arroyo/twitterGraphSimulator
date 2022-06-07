@@ -135,8 +135,12 @@ public class Graph {
 			Node<String> source = edge.getSource();
 			Node<String> target = edge.getTarget();
 
+			// required string for symmetry to occure
+			String requiredElement = target.getValue() + "," + source.getValue();
+
 			// ensuring there exists the symmetrical edge exists
-			if (!relation.contains(target.getValue() + "," + source.getValue())) {
+			if (!relation.contains(requiredElement)) {
+				System.out.println("For the graph to be symmetric tuple: " + requiredElement + " MUST be present");
 				return false;
 			}
 		}
@@ -158,7 +162,37 @@ public class Graph {
 	 * @return true if the relation is transitive
 	 */
 	public boolean isTransitive(List<String> relation) {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+
+		// iterating through each edge
+		for (String edgeString : relation) {
+
+			// converting edge from string to edge object
+			Edge<Node<String>> edge = turnStringToEdge(edgeString);
+
+			// iterating through each edge again
+			for (String edgeString2 : relation) {
+
+				// converting edge from string to object
+				Edge<Node<String>> edgeToCompare = turnStringToEdge(edgeString2);
+
+				// checking if there is possibility of transitivity
+				// i.e. if (x,y) and (y,z) exists
+				if (edge.getTarget().equals(edgeToCompare.getSource())) {
+
+					// required string
+					String requiredElement = edge.getSource().getValue() + "," + edgeToCompare.getTarget().getValue();
+
+					// ensuring (x,z) exists
+					if (!relation.contains(requiredElement)) {
+						System.out.println(
+								"For the graph to be transitive tuple: " + requiredElement + " MUST be present");
+						return false;
+					}
+				}
+			}
+		}
+
+		return true;
 
 	}
 
