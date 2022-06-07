@@ -251,11 +251,8 @@ public class Graph {
 				String source = edge.getSource().getValue();
 				String target = edge.getTarget().getValue();
 
-				// checking if edge contains current node vertex
-				if (node.equals(source) || node.equals(target)) {
-
-					// adds the other vertex
-					equivClassSet.add(source);
+				// adds a if edge = (x,a)
+				if (node.equals(source)) {
 					equivClassSet.add(target);
 				}
 			}
