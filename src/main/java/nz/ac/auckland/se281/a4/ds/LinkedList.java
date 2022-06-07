@@ -103,7 +103,24 @@ public class LinkedList<T> {
 	 *                                  size-1
 	 */
 	public T get(int pos) throws InvalidPositionException {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+
+		// ensuring the position passed is within size of list
+		if (pos > this.size() - 1 || pos < 0) {
+			throw new InvalidPositionException();
+
+		} else {
+			// start iteration from head
+			Node<T> currentNode = head;
+
+			// iterating through each node
+			for (int i = 0; i < pos; i++) {
+				// setting current node to the next node
+				currentNode = currentNode.getNext();
+			}
+
+			// returning the value of node at position
+			return currentNode.getValue();
+		}
 	}
 
 	/**
