@@ -186,10 +186,47 @@ public class LinkedList<T> {
 	 * This method removes an node at a given position TODO: Complete this method
 	 *
 	 * @param pos: an integer, which is the position
+	 * @throws InvalidPositionException if position is less than 0 or greater than
+	 *                                  size - 1
 	 */
 	public void remove(int pos) throws InvalidPositionException {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
 
+		// ensuring position is within bounds
+		if (pos < 0 || pos > this.size() - 1) {
+			throw new InvalidPositionException();
+
+		} else {
+			// getting node to be removed
+			Node<T> nodeToRemove = this.locateNode(pos);
+
+			// if removing the current head
+			if (pos == 0) {
+				// setting new head
+				head = nodeToRemove.getNext();
+
+			} else if (pos == this.size() - 1) {
+				// if removing the current tail
+				tail = this.locateNode(pos - 1);
+
+				// removing link to nodeToRemove
+				tail.setNext(null);
+
+			} else {
+				// if removing in between
+
+				// saving before and after nodes
+				Node<T> prevNode = this.locateNode(pos - 1);
+				Node<T> nextNode = nodeToRemove.getNext();
+
+				// linking prevNode to nextNode
+				prevNode.setNext(nextNode);
+
+			}
+
+			// removing next
+			nodeToRemove.setNext(null);
+
+		}
 	}
 
 	/**
