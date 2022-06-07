@@ -124,7 +124,24 @@ public class Graph {
 	 * @return true if the relation is symmetric
 	 */
 	public boolean isSymmetric(List<String> relation) {
-		throw new java.lang.UnsupportedOperationException();
+
+		// iterating through each edge
+		for (String edgeString : relation) {
+
+			// converting edge from string to Edge object
+			Edge<Node<String>> edge = turnStringToEdge(edgeString);
+
+			// source and target variables
+			Node<String> source = edge.getSource();
+			Node<String> target = edge.getTarget();
+
+			// ensuring there exists the symmetrical edge exists
+			if (!relation.contains(target.getValue() + "," + source.getValue())) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
