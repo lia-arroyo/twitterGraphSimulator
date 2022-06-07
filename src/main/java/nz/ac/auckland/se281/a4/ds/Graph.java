@@ -1,5 +1,6 @@
 package nz.ac.auckland.se281.a4.ds;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -223,10 +224,47 @@ public class Graph {
 	 * @param node     A "TwitterHandle" in the graph
 	 * @param set      A list of TwitterHandles
 	 * @param relation A relation between the TwitterHandles
-	 * @return List that is the equivalence class
+	 * @return List that is the equivalence class or null if relation isn't
+	 *         equivalence relation.
 	 */
 	public List<String> computeEquivalence(String node, List<String> set, List<String> relation) {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+
+		// ensuring relation is an equivalence relation
+		if (!isEquivalence(set, relation)) {
+			System.out.println("Can't compute equivalence class as this is not an equivalence relation.");
+			return null;
+
+		} else {
+			// creating hash set for keeping track of equivalence classes
+			HashSet<String> equivClassSet = new HashSet<String>();
+
+			// each node contains itself in the equivalence class
+			equivClassSet.add(node);
+
+			// iterating through each edge string
+			for (String edgeString : relation) {
+
+				// converting each edge from string to edge object
+				Edge<Node<String>> edge = turnStringToEdge(edgeString);
+
+				// source and target variables
+				String source = edge.getSource().getValue();
+				String target = edge.getTarget().getValue();
+
+				// checking if edge contains current node vertex
+				if (node.equals(source) || node.equals(target)) {
+
+					// adds the other vertex
+					equivClassSet.add(source);
+					equivClassSet.add(target);
+				}
+			}
+
+			// creating new list for equivalence classes
+			List<String> equivClassList = new ArrayList<String>(equivClassSet);
+
+			return equivClassList;
+		}
 	}
 
 	/**
