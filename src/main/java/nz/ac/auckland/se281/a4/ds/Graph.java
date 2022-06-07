@@ -1,6 +1,5 @@
 package nz.ac.auckland.se281.a4.ds;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -11,7 +10,7 @@ import java.util.Set;
 import nz.ac.auckland.se281.a4.TwitterHandle;
 //*******************************
 //YOU SHOUD MODIFY THE SPECIFIED 
-//METHODS  OF THIS CLASS
+//METHODS  OF THIS CLASS 
 //HELPER METHODS CAN BE ADDED
 //REQUIRED LIBRARIES ARE ALREADY 
 //IMPORTED -- DON'T ADD MORE
@@ -35,8 +34,7 @@ public class Graph {
 	/**
 	 * Creates a Graph
 	 * 
-	 * @param edges
-	 *            a list of edges to be added to the graph
+	 * @param edges a list of edges to be added to the graph
 	 */
 	public Graph(List<String> edges) {
 		adjacencyMap = new LinkedHashMap<>();
@@ -64,16 +62,13 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a boolean based on whether the
-	 * input sets are reflexive.
+	 * This method returns a boolean based on whether the input sets are reflexive.
 	 * 
 	 * TODO: Complete this method (Note a set is not passed in as a parameter but a
 	 * list)
 	 * 
-	 * @param set
-	 *            A list of TwitterHandles
-	 * @param relation
-	 *            A relation between the TwitterHandles
+	 * @param set      A list of TwitterHandles
+	 * @param relation A relation between the TwitterHandles
 	 * @return true if the set and relation are reflexive
 	 */
 	public boolean isReflexive(List<String> set, List<String> relation) {
@@ -82,19 +77,16 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a boolean based on whether the
-	 * input set is symmetric.
+	 * This method returns a boolean based on whether the input set is symmetric.
 	 * 
-	 * If the method returns false, then the following must
-	 * be printed to the console:
-	 * "For the graph to be symmetric tuple: " + requiredElement + " MUST be
-	 * present"
+	 * If the method returns false, then the following must be printed to the
+	 * console: "For the graph to be symmetric tuple: " + requiredElement + " MUST
+	 * be present"
 	 * 
 	 * TODO: Complete this method (Note a set is not passed in as a parameter but a
 	 * list)
 	 * 
-	 * @param relation
-	 *            A relation between the TwitterHandles
+	 * @param relation A relation between the TwitterHandles
 	 * @return true if the relation is symmetric
 	 */
 	public boolean isSymmetric(List<String> relation) {
@@ -102,19 +94,16 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a boolean based on whether the
-	 * input set is transitive.
+	 * This method returns a boolean based on whether the input set is transitive.
 	 * 
-	 * If the method returns false, then the following must
-	 * be printed to the console:
-	 * "For the graph to be transitive tuple: " + requiredElement + " MUST be
-	 * present"
+	 * If the method returns false, then the following must be printed to the
+	 * console: "For the graph to be transitive tuple: " + requiredElement + " MUST
+	 * be present"
 	 * 
 	 * TODO: Complete this method (Note a set is not passed in as a parameter but a
 	 * list)
 	 * 
-	 * @param relation
-	 *            A relation between the TwitterHandles
+	 * @param relation A relation between the TwitterHandles
 	 * @return true if the relation is transitive
 	 */
 	public boolean isTransitive(List<String> relation) {
@@ -123,15 +112,12 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a boolean based on whether the
-	 * input sets are anti-symmetric
-	 * TODO: Complete this method (Note a set is not passed in as a parameter but a
-	 * list)
+	 * This method returns a boolean based on whether the input sets are
+	 * anti-symmetric TODO: Complete this method (Note a set is not passed in as a
+	 * parameter but a list)
 	 * 
-	 * @param set
-	 *            A list of TwitterHandles
-	 * @param relation
-	 *            A relation between the TwitterHandles
+	 * @param set      A list of TwitterHandles
+	 * @param relation A relation between the TwitterHandles
 	 * @return true if the set and relation are anti-symmetric
 	 */
 	public boolean isEquivalence(List<String> set, List<String> relation) {
@@ -141,19 +127,16 @@ public class Graph {
 	/**
 	 * This method returns a List of the equivalence class
 	 * 
-	 * If the method can not find the equivalence class, then
-	 * The following must be printed to the console:
-	 * "Can't compute equivalence class as this is not an equivalence relation"
+	 * If the method can not find the equivalence class, then The following must be
+	 * printed to the console: "Can't compute equivalence class as this is not an
+	 * equivalence relation"
 	 * 
 	 * TODO: Complete this method (Note a set is not passed in as a parameter but a
 	 * list)
 	 * 
-	 * @param node
-	 *            A "TwitterHandle" in the graph
-	 * @param set
-	 *            A list of TwitterHandles
-	 * @param relation
-	 *            A relation between the TwitterHandles
+	 * @param node     A "TwitterHandle" in the graph
+	 * @param set      A list of TwitterHandles
+	 * @param relation A relation between the TwitterHandles
 	 * @return List that is the equivalence class
 	 */
 	public List<String> computeEquivalence(String node, List<String> set, List<String> relation) {
@@ -161,8 +144,8 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a List nodes using
-	 * the BFS (Breadth First Search) algorithm
+	 * This method returns a List nodes using the BFS (Breadth First Search)
+	 * algorithm
 	 * 
 	 * @return List of nodes (as strings) using the BFS algorithm
 	 */
@@ -171,11 +154,10 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a List nodes using
-	 * the BFS (Breadth First Search) algorithm
+	 * This method returns a List nodes using the BFS (Breadth First Search)
+	 * algorithm
 	 * 
-	 * @param start
-	 *            A "TwitterHandle" in the graph
+	 * @param start A "TwitterHandle" in the graph
 	 * @return List of nodes (as strings) using the BFS algorithm
 	 */
 	public List<Node<String>> breadthFirstSearch(Node<String> start, boolean rooted) {// name to breadthFirstSearch
@@ -184,8 +166,7 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a List nodes using
-	 * the DFS (Depth First Search) algorithm
+	 * This method returns a List nodes using the DFS (Depth First Search) algorithm
 	 * 
 	 * @return List of nodes (as strings) using the DFS algorithm
 	 */
@@ -194,11 +175,9 @@ public class Graph {
 	}
 
 	/**
-	 * This method returns a List nodes using
-	 * the DFS (Depth First Search) algorithm
+	 * This method returns a List nodes using the DFS (Depth First Search) algorithm
 	 * 
-	 * @param start
-	 *            A "TwitterHandle" in the graph
+	 * @param start A "TwitterHandle" in the graph
 	 * @return List of nodes (as strings) using the DFS algorithm
 	 */
 	public List<Node<String>> depthFirstSearch(Node<String> start, boolean rooted) {
@@ -245,6 +224,27 @@ public class Graph {
 			users.add(new TwitterHandle(n.getValue()));
 		}
 		return users;
+	}
+
+	/**
+	 * This method turns strings to an edge object which separates the source and
+	 * the target.
+	 * 
+	 * @param edge the string that contains the relation
+	 * @return the edge object that contains the source and target vertices
+	 */
+	private static Edge<Node<String>> turnStringToEdge(String edge) {
+		// separating the string into an array
+		String[] split = edge.split(",");
+
+		// taking each array element and separating into source and target
+		Node<String> source = new Node<String>(split[0]);
+		Node<String> target = new Node<String>(split[1]);
+
+		// creating edge object
+		Edge<Node<String>> edgeObject = new Edge<Node<String>>(source, target);
+
+		return edgeObject;
 	}
 
 }
