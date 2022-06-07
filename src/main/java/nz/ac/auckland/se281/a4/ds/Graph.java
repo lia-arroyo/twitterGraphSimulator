@@ -282,7 +282,59 @@ public class Graph {
 	 * @return List of nodes (as strings) using the BFS algorithm
 	 */
 	public List<Node<String>> breadthFirstSearch(Node<String> start, boolean rooted) {// name to breadthFirstSearch
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+
+		// creating a hashset for order
+		LinkedHashSet<Node<String>> bfsOrderSet = new LinkedHashSet<Node<String>>();
+
+		// creating a queue
+		NodesStackAndQueue<Node<String>> queue = new NodesStackAndQueue<Node<String>>();
+
+		// set of all source nodes in the graph converted to list
+		Set<Node<String>> setOfSourceNodes = this.adjacencyMap.keySet();
+		List<Node<String>> listOfSourceNodes = new ArrayList<Node<String>>(setOfSourceNodes);
+
+		// starting with start node
+		Node<String> currentRoot = start;
+
+		// iterating through source nodes
+		while (currentRoot != null) {
+			// adding current source node to the order hashset
+			bfsOrderSet.add(currentRoot);
+
+			// getting all the successors of current source node into an arraylist
+			LinkedList<Edge<Node<String>>> successors = this.adjacencyMap.get(currentRoot);
+
+			// iterating through each successor in successors linked list
+			for (int i = 0; i <= successors.size() - 1; i++) {
+
+				// getting the successor's target
+				Node<String> target = successors.get(i).getTarget();
+
+				// adding all targets to the queue
+				queue.append(target);
+			}
+
+			// removing start from source nodes
+			listOfSourceNodes.remove(currentRoot);
+
+			// setting current root to be the next root
+			if (!listOfSourceNodes.isEmpty()) {
+				currentRoot = listOfSourceNodes.get(0);
+
+			} else {
+				currentRoot = null;
+			}
+		}
+
+		// iterating through queue
+		while (!queue.isEmpty()) {
+			// adding elements to the order set then removing it from queue
+			bfsOrderSet.add(queue.pop());
+		}
+
+		// converting bfs order set to a list
+		List<Node<String>> bfsOrderList = new ArrayList<Node<String>>(bfsOrderSet);
+		return bfsOrderList;
 
 	}
 

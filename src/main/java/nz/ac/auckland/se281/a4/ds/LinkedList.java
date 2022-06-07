@@ -14,7 +14,7 @@ package nz.ac.auckland.se281.a4.ds;
  * The Linked List Class Has only one head pointer to the start node (head)
  * Nodes are indexed starting from 0. The list goes from 0 to size-1.
  *
- * @author Partha Roop
+ * @author Partha Roop, Lia Arroyo
  */
 public class LinkedList<T> {
 
