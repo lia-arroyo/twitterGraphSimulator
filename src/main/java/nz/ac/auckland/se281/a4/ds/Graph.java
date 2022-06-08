@@ -294,42 +294,47 @@ public class Graph {
 		List<Node<String>> listOfSourceNodes = new ArrayList<Node<String>>(setOfSourceNodes);
 
 		// starting with start node
-		Node<String> currentRoot = start;
+		Node<String> currentSourceNode = start;
 
-		// iterating through source nodes
-		while (currentRoot != null) {
+		while (currentSourceNode != null) {
 			// adding current source node to the order hashset
-			bfsOrderSet.add(currentRoot);
+			bfsOrderSet.add(currentSourceNode);
 
 			// getting all the successors of current source node into an arraylist
-			LinkedList<Edge<Node<String>>> successors = this.adjacencyMap.get(currentRoot);
+			LinkedList<Edge<Node<String>>> successors = this.adjacencyMap.get(currentSourceNode);
 
-			// iterating through each successor in successors linked list
-			for (int i = 0; i <= successors.size() - 1; i++) {
+			// if the current source node has successors and if it hasn't been visited
+			if (successors != null && listOfSourceNodes.contains(currentSourceNode)) {
 
-				// getting the successor's target
-				Node<String> target = successors.get(i).getTarget();
+				// iterating through each successor in successors linked list
+				for (int i = 0; i <= successors.size() - 1; i++) {
 
-				// adding all targets to the queue
-				queue.append(target);
+					// getting the successor's target
+					Node<String> target = successors.get(i).getTarget();
+
+					// adding all targets to the queue
+					queue.append(target);
+				}
 			}
 
-			// removing start from source nodes
-			listOfSourceNodes.remove(currentRoot);
+			// removing current source node from list of source nodes
+			listOfSourceNodes.remove(currentSourceNode);
 
-			// setting current root to be the next root
-			if (!listOfSourceNodes.isEmpty()) {
-				currentRoot = listOfSourceNodes.get(0);
+			// assigning the next source node to search
+			if (!queue.isEmpty()) {
+				// assigns next source node to be the next successor in queue
+				currentSourceNode = queue.pop();
 
-			} else {
-				currentRoot = null;
+			} else if (!listOfSourceNodes.isEmpty()) {
+				// if queue is empty, then visit next root
+				currentSourceNode = listOfSourceNodes.get(0);
 			}
-		}
 
-		// iterating through queue
-		while (!queue.isEmpty()) {
-			// adding elements to the order set then removing it from queue
-			bfsOrderSet.add(queue.pop());
+			else {
+				// if everything is visited, stop the loop
+				currentSourceNode = null;
+			}
+
 		}
 
 		// converting bfs order set to a list
