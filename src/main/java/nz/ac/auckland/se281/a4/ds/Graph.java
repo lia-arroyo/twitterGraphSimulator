@@ -300,7 +300,7 @@ public class Graph {
 			// adding current source node to the order hashset
 			bfsOrderSet.add(currentSourceNode);
 
-			// getting all the successors of current source node into an arraylist
+			// getting all the successors of current source node
 			LinkedList<Edge<Node<String>>> successors = this.adjacencyMap.get(currentSourceNode);
 
 			// if the current source node has successors and if it hasn't been visited
@@ -361,7 +361,68 @@ public class Graph {
 	 * @return List of nodes (as strings) using the DFS algorithm
 	 */
 	public List<Node<String>> depthFirstSearch(Node<String> start, boolean rooted) {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+
+		// creating a hash set for keeping dfs order
+		LinkedHashSet<Node<String>> dfsOrderSet = new LinkedHashSet<Node<String>>();
+
+		// creating a stack
+		NodesStackAndQueue<Node<String>> stack = new NodesStackAndQueue<Node<String>>();
+
+		// getting all of the source nodes from adjacency keyset and converted to list
+		Set<Node<String>> setOfSourceNodes = this.adjacencyMap.keySet();
+		List<Node<String>> listOfSourceNodes = new ArrayList<Node<String>>(setOfSourceNodes);
+
+		// starting with start node if true, otherwise start in keyset order
+		Node<String> currentSourceNode = rooted ? start : listOfSourceNodes.get(0);
+
+		// iterating through each source node
+		while (currentSourceNode != null) {
+
+			// adding current source node to the order set
+			dfsOrderSet.add(currentSourceNode); // marking as visited
+
+			// getting all the successors of current source node
+			LinkedList<Edge<Node<String>>> successors = this.adjacencyMap.get(currentSourceNode);
+
+			// if the current source node has successors and if it hasn't been visited
+			if (successors != null && listOfSourceNodes.contains(currentSourceNode)) {
+
+				// iterating through each successor in successors linked list
+				for (int i = 0; i <= successors.size() - 1; i++) {
+
+					// getting the successor's target
+					Node<String> target = successors.get(i).getTarget();
+
+					// pushing target to the top of the stack
+					stack.push(target);
+				}
+			}
+
+			// removing current source node from list of source nodes
+			listOfSourceNodes.remove(currentSourceNode);
+
+			// assigning the next source node to search
+			if (!stack.isEmpty()) {
+				// assigns next source node to be the next successor in queue
+				currentSourceNode = stack.pop();
+
+			} else if (!listOfSourceNodes.isEmpty() && !rooted) {
+				// looks for other roots if rooted is false
+				// if queue is empty, then visit next root
+
+				currentSourceNode = listOfSourceNodes.get(0);
+			}
+
+			else {
+				// if everything is visited, stop the loop
+				currentSourceNode = null;
+			}
+
+		}
+
+		// converting the dfs hash set into a list
+		List<Node<String>> dfsOrderList = new ArrayList<Node<String>>(dfsOrderSet);
+		return dfsOrderList;
 	}
 
 	/**
