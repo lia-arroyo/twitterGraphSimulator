@@ -33,16 +33,48 @@ public class TweetGraph extends Graph {
 		return nodeTweets.get(n);
 	}
 
-	public List<String> getTweetsTexts(TwitterHandle n){
+	public List<String> getTweetsTexts(TwitterHandle n) {
 		List<String> texts = new ArrayList<>(); // Only allowed to use ArrayList HERE !!!
-		for(Tweet t : getTweets(n)){
+		for (Tweet t : getTweets(n)) {
 			texts.add(t.getTextString());
 		}
 		return texts;
 	}
 
-	// search for a keyword in a tweet starting from a given node
+	/**
+	 * search for a keyword in a tweet starting from a given node
+	 * 
+	 * @param user         the twitter user
+	 * @param tweetKeyword the keyword we are searching for
+	 * @return tweet containing keyword if it exists, null otherwise
+	 */
 	public String searchTweet(TwitterHandle user, String tweetKeyword) {
-		throw new java.lang.UnsupportedOperationException("Not supported yet.");
+
+		// getting a list of all successor nodes
+		List<Node<String>> successorNodes = depthFirstSearch(user, true);
+
+		// iterating through each successor node
+		for (Node<String> successor : successorNodes) {
+
+			// converting successor to a twitter handle
+			TwitterHandle successorHandle = (TwitterHandle) successor;
+
+			// getting a list of tweets from successor
+			List<String> listOfAllTweets = getTweetsTexts(successorHandle);
+
+			// iterating through each tweet
+			for (String tweet : listOfAllTweets) {
+
+				// checking if tweet contains keyword
+				if (tweet.contains(tweetKeyword)) {
+					return "The tweet string found is: " + tweet + "\nUser " + successorHandle.getName() + " {"
+							+ successorHandle.getID() + "} tweeted " + tweetKeyword;
+				}
+			}
+
+		}
+
+		return null;
+
 	}
 }
