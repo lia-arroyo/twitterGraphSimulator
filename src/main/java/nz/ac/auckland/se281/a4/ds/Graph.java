@@ -293,8 +293,8 @@ public class Graph {
 		Set<Node<String>> setOfSourceNodes = this.adjacencyMap.keySet();
 		List<Node<String>> listOfSourceNodes = new ArrayList<Node<String>>(setOfSourceNodes);
 
-		// starting with start node
-		Node<String> currentSourceNode = start;
+		// starting with start node if true, otherwise start in keyset order
+		Node<String> currentSourceNode = rooted ? start : listOfSourceNodes.get(0);
 
 		while (currentSourceNode != null) {
 			// adding current source node to the order hashset
@@ -325,7 +325,9 @@ public class Graph {
 				// assigns next source node to be the next successor in queue
 				currentSourceNode = queue.pop();
 
-			} else if (!listOfSourceNodes.isEmpty()) {
+			} else if (!listOfSourceNodes.isEmpty() && !rooted) {
+				// looks for other roots if rooted is false
+
 				// if queue is empty, then visit next root
 				currentSourceNode = listOfSourceNodes.get(0);
 			}
