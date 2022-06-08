@@ -74,7 +74,8 @@ public class TweetGraph extends Graph {
 
 		}
 
-		return null;
+		// returning this message when no tweet is found
+		return "No successor of " + user.getName() + "tweeted " + tweetKeyword;
 
 	}
 }
